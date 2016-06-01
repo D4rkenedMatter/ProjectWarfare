@@ -2,13 +2,14 @@
 using System.Collections;
 
 public class CameraControl : MonoBehaviour {
-    public CursorLockMode wantedMode;
     public GameObject player;
+    public GameObject gun;
+    public GameObject gunPivot;
     public Rigidbody rb;
     public enum RotationAxes { MouseXAndY = 0, MouseX = 1, MouseY = 2 }
     public RotationAxes axes = RotationAxes.MouseXAndY;
-    public float sensitivityX = 15F;
-    public float sensitivityY = 15F;
+    public float sensitivityX = .5F;
+    public float sensitivityY = .5F;
     public float minimumX = -360F;
     public float maximumX = 360F;
     public float minimumY = -60F;
@@ -37,14 +38,13 @@ public class CameraControl : MonoBehaviour {
 
             transform.localEulerAngles = new Vector3(-rotationY, transform.localEulerAngles.y, 0);
         }
+        player.transform.eulerAngles = new Vector3(0,transform.localEulerAngles.y);
+        gunPivot.transform.LookAt(new Vector3());
         
-
     }
 
     void Start()
     {
-        Cursor.visible = false;
-        wantedMode = CursorLockMode.Locked;
         // Make the rigid body not change rotation
         if (rb)
             rb.freezeRotation = true;
