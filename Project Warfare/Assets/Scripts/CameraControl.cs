@@ -39,7 +39,7 @@ public class CameraControl : MonoBehaviour {
             transform.localEulerAngles = new Vector3(-rotationY, transform.localEulerAngles.y, 0);
         }
         player.transform.eulerAngles = new Vector3(0,transform.localEulerAngles.y);
-        gunPivot.transform.LookAt(new Vector3());
+        gunPivot.transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, 0);
         
     }
 
