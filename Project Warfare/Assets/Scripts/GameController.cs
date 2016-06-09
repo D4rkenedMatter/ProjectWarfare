@@ -2,11 +2,11 @@
 using System.Collections;
 
 public class GameController : MonoBehaviour {
-    public GameObject camera;
     public GameObject player;
     public GameObject bullet;
     public GameObject bulletSpawner;
-    private float fireRate = .4F;
+    public GameObject gunObject;
+    public float fireRate = .4F;
     private float timeToFire = 0;
     private bool canFire = true;
 	// Use this for initialization
@@ -16,12 +16,11 @@ public class GameController : MonoBehaviour {
 	}
 	
 	
-	void FixedUpdate () {
-        camera.transform.position = new Vector3(player.transform.position.x, camera.transform.position.y, player.transform.position.z);
+	void Update () {
 
         if (Input.GetMouseButton(0) && canFire)
         {
-            Instantiate(bullet, bulletSpawner.transform.position, Quaternion.Euler(transform.rotation.x, transform.rotation.y, transform.rotation.z));
+            Instantiate(bullet, bulletSpawner.transform.position, bulletSpawner.transform.rotation);
             canFire = false;
         }
         if (canFire == false)
